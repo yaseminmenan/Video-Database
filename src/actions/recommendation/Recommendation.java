@@ -75,34 +75,15 @@ public class Recommendation {
      */
     public String getBestUnseen(final Input input, final ActionInputData action) {
         // Create movie map for unseen movies and their average rating
-        LinkedHashMap<String, Double> movieMap = new LinkedHashMap<>();
+        LinkedHashMap<String, Double> videoMap = new LinkedHashMap<>();
 
         // Traverse movie list
         for (MovieInputData movie : input.getMovies()) {
             // If the movie isn't in the user's history, add to map
             if (!input.getUser(action.getUsername()).getHistory().containsKey(movie.getTitle())) {
-                movieMap.put(movie.getTitle(), movie.calculateAverage());
+                videoMap.put(movie.getTitle(), movie.calculateAverage());
             }
         }
-
-        // Check if movie map is empty
-        if (!movieMap.isEmpty()) {
-            String title = movieMap.entrySet().iterator().next().getKey();
-            double value = movieMap.entrySet().iterator().next().getValue();
-
-            // Find the highest rated movie and return
-            for (Map.Entry<String, Double> entry : movieMap.entrySet()) {
-                if (entry.getValue() > value) {
-                    title = entry.getKey();
-                    value = entry.getValue();
-                }
-            }
-            return "BestRatedUnseenRecommendation result: " + title;
-        }
-
-        // Create serial map for unseen serials and their average rating
-        LinkedHashMap<String, Double> serialMap = new LinkedHashMap<>();
-
         // Traverse serial map
         for (SerialInputData serial : input.getSerials()) {
             // If the serial isn't in the user's history, add to map
@@ -116,18 +97,18 @@ public class Recommendation {
 
                 // If at least one season has been rated
                 if (serialAverage != 0) {
-                    serialMap.put(serial.getTitle(), serialAverage / serial.getNumberSeason());
+                    videoMap.put(serial.getTitle(), serialAverage / serial.getNumberSeason());
                 }
             }
         }
 
-        // Check if serial map is empty
-        if (!serialMap.isEmpty()) {
-            String title = serialMap.entrySet().iterator().next().getKey();
-            double value = serialMap.entrySet().iterator().next().getValue();
+        // Check if map is empty
+        if (!videoMap.isEmpty()) {
+            String title = videoMap.entrySet().iterator().next().getKey();
+            double value = videoMap.entrySet().iterator().next().getValue();
 
-            // Find the highest rated serial and return
-            for (Map.Entry<String, Double> entry : serialMap.entrySet()) {
+            // Find the highest rated video and return
+            for (Map.Entry<String, Double> entry : videoMap.entrySet()) {
                 if (entry.getValue() > value) {
                     title = entry.getKey();
                     value = entry.getValue();
