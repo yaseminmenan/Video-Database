@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QueryShows {
+public class QueryShows extends QueryVideos {
     /**
      * Do serial query by action criteria
      */
@@ -70,45 +70,6 @@ public class QueryShows {
     }
 
     /**
-     * Return a sorted list of the serials that have appeared in user's favorite lists
-     */
-    public String getFavorite(final Input input, final ActionInputData action) {
-        // Check if query limit is larger than the list's size
-        int queryNumber = action.getNumber();
-        if (queryNumber > input.getSerials().size()) {
-            queryNumber = input.getSerials().size();
-        }
-
-        // Create map of serial titles and the number of times it has appeared on favorite list
-        Map<String, Integer> favoriteMap = new HashMap<>();
-
-        // Traverse serial
-        for (SerialInputData serial : input.getSerials()) {
-            // If the serial has the year and genre given by query, calculate
-            // how many times it has appeared on a user's favorite list
-            if (serial.checkVideoFilters(action)) {
-                int favorite = 0;
-
-                // Traverse user list
-                for (UserInputData user : input.getUsers()) {
-                    if (user.getFavoriteVideos().contains(serial.getTitle())) {
-                        favorite++;
-                    }
-                }
-                // If the serial has been found in at least one favorite list, add to map
-                if (favorite != 0) {
-                    favoriteMap.put(serial.getTitle(), favorite);
-                }
-            }
-        }
-
-        // Create sorted list of serial titles
-        List<String> titleList = new MapMethods().getListInteger(favoriteMap, queryNumber,
-                action.getSortType());
-        return  "Query result: " + titleList.toString();
-    }
-
-    /**
      * Return a list of serials sorted by duration
      */
     public String getLongest(final Input input, final ActionInputData action) {
@@ -139,40 +100,4 @@ public class QueryShows {
         return  "Query result: " + titleList.toString();
     }
 
-    /**
-     * Return a list of serials sorted by number of views
-     */
-    public String getViewed(final Input input, final ActionInputData action) {
-        // Check if query limit is larger than the list's size
-        int queryNumber = action.getNumber();
-        if (queryNumber > input.getSerials().size()) {
-            queryNumber = input.getSerials().size();
-        }
-        // Create map of serial titles and number of views
-        Map<String, Integer> viewsMap = new HashMap<>();
-
-        // Traverse serial list
-        for (SerialInputData serial : input.getSerials()) {
-            // If the serial has the year and genre given by query
-            if (serial.checkVideoFilters(action)) {
-                int views = 0;
-
-                // Check if the serial is found in each user's history, add the number of views
-                for (UserInputData user : input.getUsers()) {
-                    if (user.getHistory().containsKey(serial.getTitle())) {
-                        views += user.getHistory().get(serial.getTitle());
-                    }
-                }
-                // If the serial has ben viewed at least once, add to map
-                if (views != 0) {
-                    viewsMap.put(serial.getTitle(), views);
-                }
-            }
-        }
-        // Create a sorted list of serial titles
-        List<String> titleList = new MapMethods().getListInteger(viewsMap, queryNumber,
-                action.getSortType());
-
-        return  "Query result: " + titleList.toString();
-    }
 }

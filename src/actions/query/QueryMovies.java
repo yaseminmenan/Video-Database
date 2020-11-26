@@ -5,7 +5,7 @@ import fileio.*;
 
 import java.util.*;
 
-public class QueryMovies {
+public class QueryMovies extends QueryVideos {
 
     /**
      * Do movie query by action criteria
@@ -31,42 +31,6 @@ public class QueryMovies {
                 break;
         }
         return message;
-    }
-
-    /**
-     * Return a list of movies sorted by number of views
-     */
-   public String getViewed(final Input input, final ActionInputData action) {
-        // Check if query limit is larger than the list's size
-        int queryNumber = action.getNumber();
-        if (queryNumber > input.getMovies().size()) {
-            queryNumber = input.getMovies().size();
-        }
-        // Create map of movie titles and number of views
-        Map<String, Integer> viewsMap = new HashMap<>();
-
-        // Traverse movie list
-        for (MovieInputData movie : input.getMovies()) {
-            // If the movie has the year and genre given by query
-            if (movie.checkVideoFilters(action)) {
-                int views = 0;
-
-                // Check if the movie is found in each user's history, add the number of views
-                for (UserInputData user : input.getUsers()) {
-                    if (user.getHistory().containsKey(movie.getTitle())) {
-                        views += user.getHistory().get(movie.getTitle());
-                        }
-                }
-                // If the movie has ben viewed at least once, add to map
-                if (views != 0) {
-                    viewsMap.put(movie.getTitle(), views);
-                }
-            }
-        }
-        // Create a sorted list of movie titles
-        List<String> titleList = new MapMethods().getListInteger(viewsMap, queryNumber,
-                action.getSortType());
-        return "Query result: " + titleList.toString();
     }
 
     /**
@@ -126,45 +90,6 @@ public class QueryMovies {
         List<String> titleList = new MapMethods().getListInteger(movieMap, queryNumber,
                 action.getSortType());
         return  "Query result: " + titleList.toString();
-    }
-
-    /**
-     * Return a sorted list of the movies that have appeared in user's favorite lists
-     */
-    public String getFavorite(final Input input, final ActionInputData action) {
-        // Check if query limit is larger than the list's size
-        int queryNumber = action.getNumber();
-        if (queryNumber > input.getMovies().size()) {
-            queryNumber = input.getMovies().size();
-        }
-
-        // Create map of movie titles and the number of times it has appeared on favorite list
-        Map<String, Integer> favoriteMap = new HashMap<>();
-
-        // Traverse movie list
-        for (MovieInputData movie : input.getMovies()) {
-            // If the movie has the year and genre given by query, calculate
-            // how many times it has appeared on a user's favorite list
-            if (movie.checkVideoFilters(action)) {
-                int favorite = 0;
-
-                // Traverse user list
-                for (UserInputData user : input.getUsers()) {
-                    if (user.getFavoriteVideos().contains(movie.getTitle())) {
-                        favorite++;
-                    }
-                }
-                // If the serial has been found in at least one favorite list, add to map
-                if (favorite != 0) {
-                    favoriteMap.put(movie.getTitle(), favorite);
-                }
-            }
-        }
-
-        // Create sorted list of movie titles
-        List<String> titleList = new MapMethods().getListInteger(favoriteMap, queryNumber,
-                action.getSortType());
-        return "Query result: " + titleList.toString();
     }
 
 }
