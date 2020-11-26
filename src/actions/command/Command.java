@@ -1,8 +1,11 @@
 package actions.command;
 
-import fileio.*;
+import fileio.ActionInputData;
+import fileio.Input;
+import fileio.MovieInputData;
+import fileio.UserInputData;
+import fileio.SerialInputData;
 
-import java.util.Map;
 
 public final class Command {
     public Command() {
@@ -107,7 +110,7 @@ public final class Command {
             }
 
         // Check if video is in user's history
-        if(user.getHistory().containsKey(title)){
+        if (user.getHistory().containsKey(title)) {
             user.addRatingsNumber();
             // Add user's rating grade
              if (input.getMovies().contains(input.getMovie(title))) {

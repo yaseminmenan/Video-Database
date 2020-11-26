@@ -3,7 +3,6 @@ package fileio;
 import entertainment.Season;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Information about a tv show, retrieved from parsing the input test files
@@ -19,10 +18,6 @@ public final class SerialInputData extends ShowInput {
      * Season list
      */
     private final ArrayList<Season> seasons;
-    /**
-     * List of ratings for each season
-     */
-    private List<Double> ratings;
 
     public SerialInputData(final String title, final ArrayList<String> cast,
                            final ArrayList<String> genres,

@@ -3,13 +3,23 @@ package actions.query;
 import actor.ActorsAwards;
 import common.MapMethods;
 import entertainment.Season;
-import fileio.*;
+import fileio.ActionInputData;
+import fileio.ActorInputData;
+import fileio.Input;
+import fileio.SerialInputData;
+import fileio.MovieInputData;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+
+import static common.Constants.AWARDS_INDEX;
 import static utils.Utils.stringToAwards;
 
 public class QueryActors {
+
     /**
      * Do actor query by action criteria
      */
@@ -117,7 +127,7 @@ public class QueryActors {
             int awardsNumber = 0;
 
             // Traverse query awards list
-            for (String awards : action.getFilters().get(3)) {
+            for (String awards : action.getFilters().get(AWARDS_INDEX)) {
                 // Increment if actor has won the award
                 if (actor.getAwards().containsKey(stringToAwards(awards))) {
                     i++;
@@ -125,7 +135,7 @@ public class QueryActors {
 
             }
             // If the actor has all the query awards, insert actor and number of awards in map
-            if (i == action.getFilters().get(3).size()) {
+            if (i == action.getFilters().get(AWARDS_INDEX).size()) {
                 for (Map.Entry<ActorsAwards, Integer> awards : actor.getAwards().entrySet()) {
                     awardsNumber += awards.getValue();
                 }

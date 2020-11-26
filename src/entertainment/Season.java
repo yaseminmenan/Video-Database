@@ -24,7 +24,9 @@ public final class Season {
      * List of ratings for each season
      */
     private List<Double> ratings;
-
+    /**
+     * Map that tracks users and their rating
+     */
     private final Map<String, Double> userRatings;
 
     public Season(final int currentSeason, final int duration) {
@@ -32,7 +34,6 @@ public final class Season {
         this.duration = duration;
         this.ratings = new ArrayList<>();
 
-        //MINE
         this.userRatings = new HashMap<>();
     }
 
@@ -61,19 +62,19 @@ public final class Season {
     }
 
     /**
-     * Javadoc Comment
+     * Calculate the average rating of a season
      */
     public double calculateAverage() {
         double average = 0;
         int i = 0;
+        // Add all ratings
         for (Map.Entry<String, Double> rating : userRatings.entrySet()) {
             average = average + rating.getValue();
             i++;
         }
+        // If the season has been rated at least once, calculate average
         if (i != 0) {
             average = average / i;
-        } else {
-            average = 0;
         }
         return average;
     }

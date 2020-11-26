@@ -1,9 +1,14 @@
 package actions.query;
 
 import common.MapMethods;
-import fileio.*;
+import fileio.ActionInputData;
+import fileio.Input;
+import fileio.MovieInputData;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class QueryMovies extends QueryVideos {
 

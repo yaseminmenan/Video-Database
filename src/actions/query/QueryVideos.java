@@ -1,8 +1,10 @@
 package actions.query;
 
 import common.MapMethods;
-import fileio.*;
-
+import fileio.ActionInputData;
+import fileio.Input;
+import fileio.ShowInput;
+import fileio.UserInputData;
 
 import java.util.HashMap;
 import java.util.List;

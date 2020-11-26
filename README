@@ -1,38 +1,103 @@
-Object Oriented Programming Course
-Homework - VideosDB
+Menan Yasemin 323CD
 
-November 2020
+In this assignment I implemented a video database that provides information
+about movies, series, actors, and users.
 
-# Info
-https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/tema
+The project receives all that information as an input, as well as a list of
+actions that need to be executed. There are three types of actions: commands,
+queries and recommendations. After the input is received, the program traverses
+through the action list and performs the required actions.
 
-# About the code
+The classes for the action types are found in the package actions, and each
+action has its own package.
 
-We provide the input tests, the logic that parses them and the checker that runs them.
+Command
+The command action has three different types: favorite, view, and rating.
 
-* test_db - contains the tests in JSON format
-* src
-   * checker - the checker's sources including the checkstyle necessary files, not to be modified
-   * fileio - classes for parsing the input files, not to be modified
-   * common, utils
-        * contain utility classes with constants and static methods
-        * you can add your own functionality in the existing classes or add new classes as well
-   * actor
-        * contains an enum for the types of awards an actor can have - do not modify it
-        * you can add here your actor related classes
-   * entertainment
-        * contains an enum for the supported video genres - do not modify it
-        * class for representing a Season of a tv show - do not modify it
-        * you can add here your entertainment related classes
+The Favorite command adds a video to the user's favorite list if the video has
+already been seen. If the video has already been added or it has not been seen
+by the user, the action will return an error.
 
-We encourage you to organize your implementation in packages based on the functionality their classes offer. Try to keep
-your code modular, readable and documented.
+The View command adds a video to the user's history if it has not been seen.
+Otherwise, the program will update the number of times the video has been seen
+by incrementing that value once.
 
-# Testing
+The Rating command adds a rating to the video's rating map, which stores the
+user's name and the grade it has rated. The program checks that the user has
+not rated the movie before, else it returns an error. A video can't be rated if
+it has not been viewed.
 
-The Main class runs the checker on your implementation. Add the entry point to your implementation in it.
+Query
+The query action has four object types: actors, movies, shows, users.
 
-Run Main to test your implementation from the IDE or from command line.
+The Average query for actors returns a list of actor names sorted by the
+average rating of each actor's filmography and sorts the actors (with a rating
+greater than 0) by the rating in a given order. The number of names that the
+list contains is included in the input.
 
-Run the main method from Test class with the name of the input file from the command line and the result will be written
-to the out.txt file. Thus, you can compare this result with ref.
+The Awards query for actors returns a list of actors that have won all the
+awards given in the query, sorting them by the number of total awards won in
+a given order.
+
+The Filter Description query for actors return a list of actors that have all
+the words given in the input in their career description, sorting them
+alphabetically by the order given in the input.
+
+The movies and shows share the same queries. I have created an abstract class
+QueryVideos that includes the Favorite and Most Viewed methods in order to 
+avoid duplicated code.
+
+Each video query returns a list with a number of videos specified in the input,
+sorted in a given order. If that number exceeds the number of videos in the 
+database, the list returns all the videos which meet the requirements.
+
+The Rating query for videos returns a list of videos sorted by their ratings.
+The list does not contain videos that have not been rated.
+
+The Favorite query for videos returns a list of videos sorted by the number of
+times that they appear in users' favorite list. The list does not contain
+videos that have not been added to favorites.
+
+The Longest query for videos return a list of videos sorted by duration.
+For serials, it is calculated by sum of each season's duration.
+
+The Most Viewed query for videos returns a list of videos sorted by the total
+number of views for all users. 
+
+The Number of Ratings query for users return a list of a given number of 
+usernames sorted by the number of videos they have rated.
+
+
+Recommend
+The recommend action returns a video, or multiple videos, depending on the
+given strategy. There are two strategies for all subscription types (Standard,
+Best unseen), and three strategies only for premium subscriptions (Popular,
+Favorite, Search). All strategies return the video according to the database 
+order, with the exception of the Search recommendation, which sorts the videos
+alphabetically.
+
+The Standard recommendation returns the first unseen video by the user.
+
+The Best unseen recommendation returns the highest rated unseen video by the
+user.
+
+The Popular recommendation returns the first unseen video in the most popular
+genre. The most popular genre is found by sorting a map of genres according
+to the appearances of the videos in the users' favorites lists.
+
+The Favorite recommendation returns the video most commonly found in the users'
+favorites lists. The video must appear at least in one favorites list.
+
+The Search recommendation returns all unseen videos sorted by their average
+rating.
+
+Additional modifications:
+- added constants for index values in Constants class;
+- added class MapMethods in common package to avoid duplicate code;
+- added to Season class the userRatings map, getUserRatings, calculateAverage
+methods;
+- added to Input class the getMovie, getSerial, getUser methods;
+- added to MovieInputData class the movieRatings map and the addToMovieRatings,
+getMovieRatings, calculateAverage methods;
+- added to SerialInputData the setRating, getSeason methods;
+- added to ShowInput class the checkVideoFilters method.

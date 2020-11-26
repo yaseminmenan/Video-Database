@@ -2,6 +2,10 @@ package fileio;
 
 import java.util.ArrayList;
 
+import static common.Constants.GENRE_INDEX;
+import static common.Constants.YEAR_INDEX;
+import static common.Constants.FIRST_INDEX;
+
 /**
  * General information about show (video), retrieved from parsing the input test files
  * <p>
@@ -57,14 +61,14 @@ public abstract class ShowInput {
         boolean genreCheck = true;
 
         // Check if we are given a year in filter
-        if (action.getFilters().get(0).get(0) != null) {
+        if (action.getFilters().get(YEAR_INDEX).get(FIRST_INDEX) != null) {
             // If the video's year is different, set to false
             if (!action.getFilters().get(0).contains(Integer.toString(this.getYear()))) {
                 yearCheck = false;
             }
         }
         // Check if we are given a genre in filter
-        if (action.getFilters().get(1).get(0) != null) {
+        if (action.getFilters().get(GENRE_INDEX).get(FIRST_INDEX) != null) {
             // If the video's genre is different, set to false
             for (String genre : action.getFilters().get(1)) {
                 if (!this.getGenres().contains(genre)) {

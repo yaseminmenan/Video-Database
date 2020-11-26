@@ -1,7 +1,7 @@
 package actions.query;
-import fileio.*;
 
-
+import fileio.ActionInputData;
+import fileio.Input;
 
 public final class Query {
 

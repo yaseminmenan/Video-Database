@@ -75,4 +75,8 @@ public final class Constants {
     public static final int MAX_LENGTH = 50;
 
     // add any constants you think you may use
+    public static final int AWARDS_INDEX = 3;
+    public static final int YEAR_INDEX = 0;
+    public static final int GENRE_INDEX = 1;
+    public static final int FIRST_INDEX = 0;
 }
