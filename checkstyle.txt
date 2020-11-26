@@ -1,0 +1,19 @@
+Starting audit...
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\command\Command.java:3:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\command\Command.java:5:8: Unused import - java.util.Map. [UnusedImports]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\command\Command.java:110:9: 'if' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\command\Command.java:110:49: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\Query.java:2:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryActors.java:6:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryActors.java:8:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryActors.java:120:58: '3' is a magic number. [MagicNumber]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryActors.java:128:46: '3' is a magic number. [MagicNumber]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryMovies.java:4:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryMovies.java:6:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryShows.java:5:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\query\QueryUsers.java:8:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\recommendation\Recommendation.java:5:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\actions\recommendation\Recommendation.java:7:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] C:\Users\yasem\IdeaProjects\teme\teme\tema1\Tema-POO-2020\.\src\common\MapMethods.java:3:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+Audit done.
+Checkstyle ends with 16 errors.
