@@ -145,7 +145,6 @@ public class QueryActors {
 
         // Sort the map
         actorMap = new MapMethods().sortIntegerMap(actorMap, action.getSortType());
-
         // Add actors' names to list
         List<String> nameList = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : actorMap.entrySet()) {

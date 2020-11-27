@@ -24,13 +24,13 @@ public class QueryMovies extends QueryVideos {
                 message = getRatings(input, action);
                 break;
             case "favorite":
-                message = getFavorite(input, action);
+                message = getFavorite(input, action, input.getMovies());
                 break;
             case "longest":
                 message = getLongest(input, action);
                 break;
             case "most_viewed":
-                message = getViewed(input, action);
+                message = getViewed(input, action, input.getMovies());
                 break;
             default:
                 break;

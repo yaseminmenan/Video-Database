@@ -14,24 +14,12 @@ public abstract class QueryVideos {
     /**
      * Return a list of videos sorted by number of views
      */
-    public String getViewed(final Input input, final ActionInputData action) {
+    public String getViewed(final Input input, final ActionInputData action,
+                            final List<? extends ShowInput> videoList) {
         // Check if query limit is larger than the list's size
         int queryNumber = action.getNumber();
-
-       // ShowInput video = null;
-        List<? extends ShowInput> videoList;
-
-        if (action.getObjectType().equals("movies")) {
-            if (queryNumber > input.getMovies().size()) {
-                queryNumber = input.getMovies().size();
-            }
-            videoList = input.getMovies();
-
-        } else {
-            if (queryNumber > input.getSerials().size()) {
-                queryNumber = input.getSerials().size();
-            }
-            videoList = input.getSerials();
+        if (queryNumber > videoList.size()) {
+            queryNumber = videoList.size();
         }
 
         // Create map of videos titles and number of views
@@ -65,23 +53,12 @@ public abstract class QueryVideos {
     /**
      * Return a sorted list of the videos that have appeared in user's favorite lists
      */
-    public String getFavorite(final Input input, final ActionInputData action) {
+    public String getFavorite(final Input input, final ActionInputData action,
+                              final List<? extends ShowInput> videoList) {
         // Check if query limit is larger than the list's size
         int queryNumber = action.getNumber();
-       // ShowInput video = null;
-        List<? extends ShowInput> videoList;
-
-        if (action.getObjectType().equals("movies")) {
-            if (queryNumber > input.getMovies().size()) {
-                queryNumber = input.getMovies().size();
-            }
-            videoList = input.getMovies();
-
-        } else {
-            if (queryNumber > input.getSerials().size()) {
-                queryNumber = input.getSerials().size();
-            }
-            videoList = input.getSerials();
+        if (queryNumber > videoList.size()) {
+            queryNumber = videoList.size();
         }
 
         // Create map of video titles and the number of times it has appeared on favorite list

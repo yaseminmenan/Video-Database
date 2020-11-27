@@ -22,13 +22,13 @@ public class QueryShows extends QueryVideos {
                 message = getRatings(input, action);
                 break;
             case "favorite":
-                message = getFavorite(input, action);
+                message = getFavorite(input, action, input.getSerials());
                 break;
             case "longest":
                 message = getLongest(input, action);
                 break;
             case "most_viewed":
-                message = getViewed(input, action);
+                message = getViewed(input, action, input.getSerials());
                 break;
             default:
                 break;

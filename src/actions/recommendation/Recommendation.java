@@ -84,7 +84,7 @@ public class Recommendation {
                 videoMap.put(movie.getTitle(), movie.calculateAverage());
             }
         }
-        // Traverse serial map
+        // Traverse serial list
         for (SerialInputData serial : input.getSerials()) {
             // If the serial isn't in the user's history, add to map
             if (!input.getUser(action.getUsername()).getHistory().containsKey(serial.getTitle())) {
